@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+    box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+input[type=button] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+input[type=button]:hover {
+    background-color: #45a049;
+}
+
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <form action="/action_page.php">
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">First Person Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="fname" name="firstname" placeholder="First Person Name.." required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="lname">Second Person Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="sname" name="secondname" placeholder="Second Person Name.." required>
+      </div>
+    </div>
+    
+     <br/>
+    <div class="row">
+      <input type="button" value="Test Your Bond" onclick="flames()">
+    </div>
+  </form>
+
+</body>
+<script>
+function flames(){
+var fname= document.getElementById("fname").value;
+var sname= document.getElementById("sname").value;
+if(fname == undefined || sname == undefined || fname.trim() == '' || sname.trim() == '') 
+{
+ alert("Enter 2 names..."); return;
+}
+  /*  logic of calculation*/
+           
+    var r = /\s+/g;
+    var second ="";
+    var orfirst = fname.trim().toUpperCase();
+    var nam=orfirst;
+    orfirst = orfirst.replace(r,"");
+    if(orfirst!="")
+    {
+			var count = 0;
+            var first = orfirst;	
+            second = sname.trim().toUpperCase();
+            var names=second;
+            second = second.replace(r,"");	
+            if(second != "")
+            {
+               
+                    for(var xx=0; xx<first.length; xx++)
+                    {
+                            for(var yy=0; yy<second.length; yy++)
+                            {
+                                    if(first[xx] == second[yy])
+                                    {
+                                            var a1 = first.substring(0,xx);
+                                            var a2 = first.substring(xx+1,first.length);
+                                            first = a1+a2;
+                                            xx=-1;
+                                            var b1 = second.substring(0,yy);
+                                            var b2 = second.substring(yy+1,second.length);
+                                            second = b1+b2;
+                                            yy=-1;
+                                            break;
+                                    }
+                            }
+                    }
+            
+                    var ss=(first+second);
+                    var l=ss.length;
+                    var ar = new Array("F", "L", "A", "M", "E", "S");
+                    var stp=1;
+            
+                    for(var x=6; x>1; x--)
+                    {
+                            var g=((l%x)+stp)-1;
+                            if(g>x)
+                            {
+                                    g=g%x;
+                            }
+                            if(g==0)
+                            {
+                                    g=ar.length;
+                            }
+                            ar.splice(g-1,1);
+                            stp=g;
+
+                    }
+
+                    if(ar=="F")
+                    {
+                             alert("FRIENDS");
+							               
+                    }
+                    else if(ar=="L")
+                    {
+                             alert("LOVER");
+							
+                    }
+                    else if(ar=="A")
+                    {
+                             alert("AFFAIR");
+							
+                    } 
+                    else if(ar=="M")
+                    {
+                             alert("MARRIAGE");
+							
+                    }
+                    else if(ar=="E")
+                    {	
+                             alert("ENEMY");
+							
+                    }
+                    else if(ar=="S")
+                    {
+                           alert("SISTER");
+							
+                    }
+                   
+            }
+                   
+    }
+                           
+    }                
+            /*ends*/
+            
+            
+
+
+
+</script>
+</html>
+			
